@@ -10,22 +10,17 @@ function add() {
   const dayExists = nlwSetup.dayExists(today);
 
   if (dayExists) {
-    alert("Dia já incluso")
-    return
-  }
+    alert("Dia já incluso🛑 Volte amanhã para registrar seu novo dia📈");
+    return;
+  };
 
   nlwSetup.addDay(today);
-}
+};
 
 function save() {
-  
-}
+  localStorage.setItem('NLWSetup@habits', JSON.stringify(nlwSetup.data));
+};
 
-// const data = {
-//   run: ["01-01", "01-02", "01-06", "01-07", "01-08"],
-//   takePills: ["01-03", "01-09"],
-//   journal: ["01-02", "01-04"]
-// };
-
-// nlwSetup.setData(data);
-// nlwSetup.load()
+const data = JSON.parse(localStorage.getItem('NLWSetup@habits')) || {};
+nlwSetup.setData(data);
+nlwSetup.load();
